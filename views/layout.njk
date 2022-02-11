@@ -23,21 +23,22 @@
     
     <form action="/home" method="post">
       <div>
-          <label for="name">Nom :</label>
-          <input type="text" id="name" name="user_name">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
       </div>
+
       <div>
-          <label for="password">password :</label>
-          <input type="number" id="password" name="user_password">
-      </div>
-      <div>
-          <input type="button" value="Bouton cliquer">
+        <label for="pass">Password (4 characters minimum):</label>
+        <input type="password" id="pass" name="password"
+           minlength="8" required>
+        </div>
+
+        <input type="submit" value="Sign in">
+
+
     </form>
 
-
-
-
-    {% block content %} {% endblock %}
+  {% block content %} {% endblock %}
 
   </body>
   <footer>
