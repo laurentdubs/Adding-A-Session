@@ -5,15 +5,15 @@ import cookie from "cookie";
 const listOfUsers = [
     {
         name: "Laurent",
-        password: 123
+        password: "Laurent/123",
     },
     {
         name: "Frieda",
-        password: 456,
+        password: "Frieda/456",
     },
     {
-        name: "Toto",
-        password: 789,
+        name: "John",
+        password: "John/789",
 
     }
 ]
@@ -33,26 +33,34 @@ app.get("/", (request, response) => {
   response.render("home");
 });
 
-app.get("/handle-form", (request, response) => {
-  response.render("handle-form");
+app.get("/login", (request, response) => {
+  response.render("login");
 });
 
 const formParser = express.urlencoded({ extended: true });
 
-app.post("/home", formParser, (request, response) => {
-  const color = request.body.appearance;
-  response.set(
+app.post("/private", formParser, (request, response) => {
+  const users = request.body;
+  console.log(users);
+   response.set(
     "Set-Cookie",
-    cookie.serialize("myCookie", color, {
+    cookie.serialize("username", users.name,{
       maxAge: 3600,
     }),
   );
-  response.render("home", { color });
+  response.render("private", { users });
 });
 
-app.get("/view-cookie", (request, response) => {
-  const cookies = cookie.parse(request.get("cookie") || "");
-  response.send(cookies.myCookie);
+app.get("/logout", (request, response) => {
+  const user = request.body;
+  console.log(user);
+  response.set(
+    "Set-Cookie",
+    cookie.serialize("username", " ", {
+      maxAge: 0,
+    }),
+  );
+  response.render("home");
 });
 
 app.listen(3000, () => {

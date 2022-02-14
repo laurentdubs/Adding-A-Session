@@ -12,34 +12,22 @@
   </head>
 
   <body>
-
-        <nav>
-            <ul>
-                <li><a href="/" class="item-navigation">Home</a></li>
-                <li><a href="/options" class="item-navigation">handle-form</a></li>
-            </ul>
-        </nav>
-       
+      <nav>
+      <ul>
+        <li><a href="/" class="item-navigation">Home</a></li>
+        <li>
+          <a href="/login" class="item-navigation">Promotions</a>
+        </li>
+      </ul>
+    </nav>
     
-    <form action="/home" method="post">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-      </div>
 
-      <div>
-        <label for="pass">Password (4 characters minimum):</label>
-        <input type="password" id="pass" name="password"
-           minlength="8" required>
-        </div>
-
-        <input type="submit" value="Sign in">
+    <div class = "book-list">
+    {% block content %} {% endblock %}
+    </div>
 
 
-    </form>
-
-  {% block content %} {% endblock %}
-
+        
   </body>
   <footer>
   </footer>
